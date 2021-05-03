@@ -33,7 +33,7 @@ const createTable = () => {
 
 const appendPosts = (post) => {
 
-    const postsTable = document.querySelector(".postsTable")
+    const postsTable = document.querySelector(".postsTable");
 
     let postsTableBodyRow = document.createElement("tr");
     postsTableBodyRow.className = "postsTableBodyRow";
@@ -64,9 +64,10 @@ async function getPosts() {
             appendPosts(post);
         }
     } catch(err) {
-        console.error("Failed to fetch data")
+        console.error("Failed to fetch data");
     }
 }
+
 getPosts();
 
 
