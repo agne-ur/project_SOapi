@@ -1,8 +1,10 @@
-const postsDiv = document.querySelector("div.posts");
+const postsDiv = document.querySelector("#posts");
+console.log(postsDiv)
 
 let tableHeaders = ["Title", "Author", "Date"]
 
 const createTable = () => {
+    console.log(postsDiv)
     while (postsDiv.firstChild) postsDiv.removeChild(postsDiv.firstChild);
 
     let postsTable = document.createElement("table");
@@ -31,6 +33,7 @@ const createTable = () => {
 }
 
 const appendPosts = (post) => {
+    console.log(post, "post")
     const postsTable = document.querySelector(".postsTable")
 
     let postsTableBodyRow = document.createElement("tr");
@@ -55,6 +58,7 @@ async function getPosts() {
         let response = await fetch("https://api.stackexchange.com/2.2/questions?page=1&pagesize=20&order=desc&sort=activity&site=stackoverflow");
         let data = await response.json();
         let {items} = data;
+        // debugger
         console.log(items);
         createTable();
 
