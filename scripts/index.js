@@ -1,10 +1,9 @@
 const postsDiv = document.querySelector("#posts");
-console.log(postsDiv)
 
 let tableHeaders = ["Title", "Author", "Date"]
 
 const createTable = () => {
-    console.log(postsDiv)
+
     while (postsDiv.firstChild) postsDiv.removeChild(postsDiv.firstChild);
 
     let postsTable = document.createElement("table");
@@ -33,7 +32,7 @@ const createTable = () => {
 }
 
 const appendPosts = (post) => {
-    console.log(post, "post")
+
     const postsTable = document.querySelector(".postsTable")
 
     let postsTableBodyRow = document.createElement("tr");
@@ -46,7 +45,7 @@ const appendPosts = (post) => {
     postAuthor.innerText = post.owner.display_name;
 
     let postDate = document.createElement("td");
-    postDate.innerText = new Date(post.owner.creation_date * 1000).toGMTString();
+    postDate.innerText = new Date(post.creation_date * 1000).toGMTString();
 
     postsTableBodyRow.append(postTitle, postAuthor, postDate);
 
@@ -55,11 +54,10 @@ const appendPosts = (post) => {
 
 async function getPosts() {
     try {
-        let response = await fetch("https://api.stackexchange.com/2.2/questions?page=1&pagesize=20&order=desc&sort=activity&site=stackoverflow");
-        let data = await response.json();
-        let {items} = data;
-        // debugger
-        console.log(items);
+        const response = await fetch("https://api.stackexchange.com/2.2/questions?page=1&pagesize=20&order=desc&sort=activity&site=stackoverflow");
+        const data = await response.json();
+        const {items} = data;
+
         createTable();
 
         for (let post of items) {
